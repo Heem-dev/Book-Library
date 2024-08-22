@@ -30,6 +30,37 @@ div > h1 {
 
 .booksContainer {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+
   grid-auto-flow: row;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: center;
+  align-content: center;
+}
+
+.bookCard {
+  background-color: antiquewhite;
+  border-radius: 5px;
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 300px;
+}
+
+.readContainer {
+  color: rgb(126, 96, 42);
+  display: flex;
+  gap: 10px;
+}
+
+.svgIcon {
+  width: 30px;
+  height: 30px;
+
+  cursor: pointer;
 }
