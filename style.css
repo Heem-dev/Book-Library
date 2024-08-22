@@ -1,0 +1,35 @@
+* {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: burlywood;
+}
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-top: 20px;
+}
+
+div > h1 {
+  font-size: 3em;
+}
+
+.addBook {
+  margin: 20px;
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.booksContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-auto-flow: row;
+}
