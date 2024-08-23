@@ -1,28 +1,40 @@
 const booksContainer = document.querySelector(".booksContainer");
 const addBook = document.querySelector(".addBook");
-addBook.addEventListener("click", addBookToLibrary);
-let myLibrary = [
-  {
-    author: "George RR Martin",
-    title: "A Song of Ice and Fire",
-    pages: 1299,
-    read: true,
-  },
-  {
-    author: "Ga",
-    title: "As Fire",
-    pages: 129,
-    read: false,
-  },
-];
+const addBtn = document.querySelector(".addBtn");
+const bookModal = document.querySelector(".bookModal");
+addBtn.addEventListener("click", (e) => {
+  e.preventDefault();
+  addBookToLibrary();
+});
+let myLibrary = [];
+
 getLibrary();
 
 function Book(author, title, pages, readStatus) {
   // the constructor...
+  const newBook = {};
+  newBook.author = author;
+  newBook.title = title;
+  newBook.pages = pages;
+  newBook.read = readStatus;
+
+  myLibrary.push(newBook);
+  saveLibrary();
+  getLibrary();
+  displayBooks();
 }
 
 function addBookToLibrary() {
   // do stuff here
+  const title = document.querySelector("#bookTitle").value;
+  const author = document.querySelector("#author").value;
+  const pages = document.querySelector("#pages").value;
+  const readOrNot = document.querySelector(".doneAddReading").checked;
+
+  Book(author, title, pages, readOrNot);
+  updateReadStatus();
+  document.querySelector("form").reset();
+  bookModal.close();
 }
 
 function displayBooks() {
@@ -46,8 +58,7 @@ function displayBooks() {
     const readOrNot = document.createElement("h5");
     readOrNot.textContent = "Done Reading?";
     readContainer.classList = "readContainer";
-    readContainer.appendChild(readOrNot);
-    readContainer.appendChild(readStatus);
+    readContainer.append(readOrNot, readStatus);
     const deleteBook = document.createElement("div");
     deleteBook.innerHTML = `<svg class='svgIcon' xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000" height="800px" width="800px" version="1.1" id="Layer_1" viewBox="0 0 512 512" xml:space="preserve">
 <g>
@@ -78,11 +89,7 @@ function displayBooks() {
     deleteBook.classList = "deleteBook";
     deleteBook.setAttribute("index", index);
     deleteBook.addEventListener("click", deleteBookFun);
-    bookCard.appendChild(title);
-    bookCard.appendChild(author);
-    bookCard.appendChild(pages);
-    bookCard.appendChild(readContainer);
-    bookCard.appendChild(deleteBook);
+    bookCard.append(title, author, pages, readContainer, deleteBook);
 
     bookCard.setAttribute("index", index);
     booksContainer.appendChild(bookCard);
@@ -91,23 +98,25 @@ function displayBooks() {
 
 displayBooks();
 
-document.querySelectorAll(".doneReading").forEach((element) => {
-  element.addEventListener("change", function updateRead(e) {
-    const index = element.parentElement.parentElement.getAttribute("index");
-    myLibrary[index].read = element.checked;
-    saveLibrary();
+updateReadStatus();
+
+function updateReadStatus() {
+  document.querySelectorAll(".doneReading").forEach((element) => {
+    element.addEventListener("change", function updateRead(e) {
+      const index = element.parentElement.parentElement.getAttribute("index");
+      myLibrary[index].read = element.checked;
+      saveLibrary();
+    });
   });
-});
+}
 
 function deleteBookFun(e) {
-  console.log(e.currentTarget);
   let index = e.currentTarget.getAttribute("index");
-
-  console.log(index);
 
   myLibrary.splice(index, 1);
   saveLibrary();
   displayBooks();
+  updateReadStatus();
 }
 
 function saveLibrary() {

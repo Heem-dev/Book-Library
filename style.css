@@ -65,7 +65,6 @@ div > h1 {
   cursor: pointer;
 }
 .bookModal {
-  /* background-color: antiquewhite; */
   border-radius: 6px;
 
   position: absolute;
