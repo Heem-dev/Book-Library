@@ -1,7 +1,7 @@
 * {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
-  padding: 0;
+  /* padding: 0; */
   box-sizing: border-box;
 }
 
@@ -63,4 +63,52 @@ div > h1 {
   height: 30px;
 
   cursor: pointer;
+}
+.bookModal {
+  /* background-color: antiquewhite; */
+  border-radius: 6px;
+
+  position: absolute;
+  margin: auto;
+  margin-top: 20%;
+}
+
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+form > * {
+  font-size: 2em;
+}
+form > * input {
+  font-size: 1em;
+}
+
+form > div {
+  display: flex;
+  justify-content: space-between;
+
+  margin: 10px;
+  gap: 10px;
+}
+form > .cancelAddBtns {
+  justify-content: center;
+  margin: 10px;
+}
+form > .cancelAddBtns > button {
+  font-size: 0.6em;
+  width: 90px;
+
+  padding: 5px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.readAddContainer {
+  justify-content: center;
+  align-items: center;
+
+  color: rgb(126, 96, 42);
+
+  margin: 20px;
 }

@@ -1,4 +1,6 @@
 const booksContainer = document.querySelector(".booksContainer");
+const addBook = document.querySelector(".addBook");
+addBook.addEventListener("click", addBookToLibrary);
 let myLibrary = [
   {
     author: "George RR Martin",
@@ -117,3 +119,7 @@ function getLibrary() {
     myLibrary = JSON.parse(libraryData);
   }
 }
+
+addBook.addEventListener("click", () => {
+  document.querySelector(".bookModal").showModal();
+});

@@ -10,8 +10,40 @@
   <body>
     <div class="mainContainer">
       <h1>My Library</h1>
-      <button class="addBook" type="submit">Add Book</button>
+      <button class="addBook">Add Book</button>
       <div class="booksContainer"></div>
     </div>
+    <dialog data-modal class="bookModal">
+      <form>
+        <div>
+          <label for="bookTitle">Book Title: </label>
+          <input type="text" name="bookTitle" id="bookTitle" />
+        </div>
+        <div>
+          <label for="author">Author: </label>
+          <input type="text" name="author" id="author" />
+        </div>
+        <div>
+          <label for="pages">Pages: </label>
+          <input
+            type="number"
+            min="1"
+            pattern="[0-9]"
+            onkeydown="if(event.key==='.'){event.preventDefault();}"
+            oninput="event.target.value = event.target.value.replace(/[^0-9]*/g,'');"
+            name="pages"
+            id="pages"
+          />
+        </div>
+        <div class="readAddContainer">
+          <h6>Done Reading?</h6>
+          <input type="checkbox" class="doneAddReading" />
+        </div>
+        <div class="cancelAddBtns">
+          <button type="submit" formmethod="dialog">Cancel</button>
+          <button type="submit">Add</button>
+        </div>
+      </form>
+    </dialog>
   </body>
 </html>
